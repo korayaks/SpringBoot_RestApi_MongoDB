@@ -1,5 +1,7 @@
-package com.restapi_mongodb.springboot_restapi_mongodb;
+package com.restapi_mongodb.springboot_restapi_mongodb.Models;
 
+import com.restapi_mongodb.springboot_restapi_mongodb.Models.Address;
+import com.restapi_mongodb.springboot_restapi_mongodb.Models.Gender;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -7,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data

@@ -1,5 +1,9 @@
 package com.restapi_mongodb.springboot_restapi_mongodb;
 
+import com.restapi_mongodb.springboot_restapi_mongodb.Models.Address;
+import com.restapi_mongodb.springboot_restapi_mongodb.Models.Gender;
+import com.restapi_mongodb.springboot_restapi_mongodb.Models.Student;
+import com.restapi_mongodb.springboot_restapi_mongodb.Repo.IStudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @SpringBootApplication

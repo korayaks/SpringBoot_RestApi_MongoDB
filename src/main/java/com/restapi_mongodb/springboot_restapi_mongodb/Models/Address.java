@@ -1,4 +1,4 @@
-package com.restapi_mongodb.springboot_restapi_mongodb;
+package com.restapi_mongodb.springboot_restapi_mongodb.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
