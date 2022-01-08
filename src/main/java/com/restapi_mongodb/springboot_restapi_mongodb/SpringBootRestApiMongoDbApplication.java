@@ -38,10 +38,6 @@ public class SpringBootRestApiMongoDbApplication {
                     BigDecimal.TEN,
                     LocalDateTime.now()
             );
-            repository.findStudentByEmail(student.getEmail()).ifPresentOrElse(s -> System.out.println(s + "already exists"), () -> {
-                System.out.println("Inserting student " + student);
-                repository.insert(student);
-            });
 
         };
     }

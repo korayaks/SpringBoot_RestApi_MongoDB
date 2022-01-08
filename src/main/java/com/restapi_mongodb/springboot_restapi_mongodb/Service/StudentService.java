@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class StudentService {
@@ -14,5 +15,9 @@ public class StudentService {
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    public Student getStudent(String email) {
+        return studentRepository.findStudentByEmail(email);
     }
 }
