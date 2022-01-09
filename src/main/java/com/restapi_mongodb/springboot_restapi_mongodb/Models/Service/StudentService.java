@@ -1,4 +1,4 @@
-package com.restapi_mongodb.springboot_restapi_mongodb.Service;
+package com.restapi_mongodb.springboot_restapi_mongodb.Models.Service;
 
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Student;
 import com.restapi_mongodb.springboot_restapi_mongodb.Repo.IStudentRepository;
@@ -19,5 +19,10 @@ public class StudentService {
 
     public Student getStudent(String email) {
         return studentRepository.findStudentByEmail(email);
+    }
+
+    public Student createStudent(Student student) {
+        studentRepository.insert(student);
+        return student;
     }
 }
