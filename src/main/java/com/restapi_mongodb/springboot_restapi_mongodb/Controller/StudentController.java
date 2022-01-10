@@ -28,4 +28,9 @@ public class StudentController {
         return studentService.createStudent(student);
     }
 
+    @PutMapping("/updateStudent/{email}")
+    public Student updateStudent(@PathVariable("email") String email, @RequestBody Student student)
+    {
+        return studentService.updateStudent(email,student);
+    }
 }
