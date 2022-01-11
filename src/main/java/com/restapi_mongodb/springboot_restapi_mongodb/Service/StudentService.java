@@ -1,6 +1,7 @@
 package com.restapi_mongodb.springboot_restapi_mongodb.Service;
 
 import com.restapi_mongodb.springboot_restapi_mongodb.Config.MapperConfig;
+import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentCreateDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentReadDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Student;
 import com.restapi_mongodb.springboot_restapi_mongodb.Repo.IStudentRepository;
@@ -28,8 +29,9 @@ public class StudentService {
         return modelMapper.map(studentRepository.findStudentByEmail(email),StudentReadDto.class);
     }
 
-    public Student createStudent(Student student) {
-        studentRepository.insert(student);
+    public StudentCreateDto createStudent(StudentCreateDto student) {
+        Student createdStudent = modelMapper.map(student,Student.class);
+        studentRepository.save(createdStudent);
         return student;
     }
 

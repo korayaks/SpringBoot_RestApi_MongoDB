@@ -3,6 +3,7 @@ package com.restapi_mongodb.springboot_restapi_mongodb.Models;
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Address;
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Gender;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Data
 @Document
+@NoArgsConstructor
 public class Student {
     @Id
     private String id;

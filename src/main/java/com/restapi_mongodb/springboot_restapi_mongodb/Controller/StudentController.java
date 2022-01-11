@@ -1,5 +1,6 @@
 package com.restapi_mongodb.springboot_restapi_mongodb.Controller;
 
+import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentCreateDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentReadDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Student;
 import com.restapi_mongodb.springboot_restapi_mongodb.Service.StudentService;
@@ -25,7 +26,7 @@ public class StudentController {
     }
 
     @PostMapping("/createStudent")
-    public Student createStudent(@RequestBody Student student) {
+    public StudentCreateDto createStudent(@RequestBody StudentCreateDto student) {
         return studentService.createStudent(student);
     }
 
