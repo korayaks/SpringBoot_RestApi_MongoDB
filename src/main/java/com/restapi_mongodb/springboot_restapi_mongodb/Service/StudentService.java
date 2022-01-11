@@ -1,9 +1,13 @@
-package com.restapi_mongodb.springboot_restapi_mongodb.Models.Service;
+package com.restapi_mongodb.springboot_restapi_mongodb.Service;
 
+import com.restapi_mongodb.springboot_restapi_mongodb.Config.MapperConfig;
+import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentReadDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Student;
 import com.restapi_mongodb.springboot_restapi_mongodb.Repo.IStudentRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -11,14 +15,17 @@ import java.util.List;
 @Service
 public class StudentService {
 
+    @Autowired
+    ModelMapper modelMapper;
+
     private final IStudentRepository studentRepository;
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    public Student getStudent(String email) {
-        return studentRepository.findStudentByEmail(email);
+    public StudentReadDto getStudent(String email) {
+        return modelMapper.map(studentRepository.findStudentByEmail(email),StudentReadDto.class);
     }
 
     public Student createStudent(Student student) {

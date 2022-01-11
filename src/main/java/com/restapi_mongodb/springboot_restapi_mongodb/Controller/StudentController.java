@@ -1,7 +1,8 @@
 package com.restapi_mongodb.springboot_restapi_mongodb.Controller;
 
+import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentReadDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Student;
-import com.restapi_mongodb.springboot_restapi_mongodb.Models.Service.StudentService;
+import com.restapi_mongodb.springboot_restapi_mongodb.Service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class StudentController {
     }
 
     @GetMapping("/byEmail/{email}")
-    public Student fetchStudent(@PathVariable("email") String email) {
+    public StudentReadDto fetchStudent(@PathVariable("email") String email) {
         return studentService.getStudent(email);
     }
 
