@@ -2,9 +2,12 @@ package com.restapi_mongodb.springboot_restapi_mongodb.Controller;
 
 import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentCreateDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentReadDto;
+import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentUpdateDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Student;
+import com.restapi_mongodb.springboot_restapi_mongodb.Service.IStudentService;
 import com.restapi_mongodb.springboot_restapi_mongodb.Service.StudentService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +16,9 @@ import java.util.List;
 @RequestMapping("api/v1/students")
 @AllArgsConstructor
 public class StudentController {
-    private final StudentService studentService;
+
+    @Autowired
+    IStudentService studentService;
 
     @GetMapping
     public List<Student> fetchAllStudents() {
@@ -27,12 +32,17 @@ public class StudentController {
 
     @PostMapping("/createStudent")
     public StudentCreateDto createStudent(@RequestBody StudentCreateDto student) {
-        return studentService.createStudent(student);
+        if (studentService.getStudent(student.getEmail()) == null) {
+            return studentService.createStudent(student);
+        }
+        return null;
     }
 
     @PutMapping("/updateStudent/{email}")
-    public Student updateStudent(@PathVariable("email") String email, @RequestBody Student student)
-    {
-        return studentService.updateStudent(email,student);
+    public Student updateStudent(@PathVariable("email") String email, @RequestBody StudentUpdateDto student) {
+        if (studentService.getStudent(email) != null) {
+            return studentService.updateStudent(email, student);
+        }
+        return null;
     }
 }

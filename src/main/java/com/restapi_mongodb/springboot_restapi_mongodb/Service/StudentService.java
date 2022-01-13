@@ -3,6 +3,7 @@ package com.restapi_mongodb.springboot_restapi_mongodb.Service;
 import com.restapi_mongodb.springboot_restapi_mongodb.Config.MapperConfig;
 import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentCreateDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentReadDto;
+import com.restapi_mongodb.springboot_restapi_mongodb.Dtos.StudentUpdateDto;
 import com.restapi_mongodb.springboot_restapi_mongodb.Models.Student;
 import com.restapi_mongodb.springboot_restapi_mongodb.Repo.IStudentRepository;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class StudentService {
+public class StudentService implements IStudentService {
 
     @Autowired
     ModelMapper modelMapper;
@@ -26,18 +27,18 @@ public class StudentService {
     }
 
     public StudentReadDto getStudent(String email) {
-        return modelMapper.map(studentRepository.findStudentByEmail(email),StudentReadDto.class);
+        return modelMapper.map(studentRepository.findStudentByEmail(email), StudentReadDto.class);
     }
 
     public StudentCreateDto createStudent(StudentCreateDto student) {
-        Student createdStudent = modelMapper.map(student,Student.class);
+        Student createdStudent = modelMapper.map(student, Student.class);
         studentRepository.save(createdStudent);
         return student;
     }
 
-    public Student updateStudent(String email, Student student) {
+    public Student updateStudent(String email, StudentUpdateDto student) {
         Student selectedStudent = studentRepository.findStudentByEmail(email);
-        if(selectedStudent != null){
+        if (selectedStudent != null) {
             selectedStudent.setAddress(student.getAddress());
             selectedStudent.setEmail(student.getEmail());
             selectedStudent.setFavouriteSubjects(student.getFavouriteSubjects());
@@ -47,7 +48,7 @@ public class StudentService {
             selectedStudent.setTotalSpentInBooks(student.getTotalSpentInBooks());
             return studentRepository.save(selectedStudent);
 
-        }else{
+        } else {
             return null;
         }
     }
